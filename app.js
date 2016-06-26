@@ -214,7 +214,9 @@ app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRed
  * Custom routes
  */
 
-// app.get()
+app.get('/admin/addUser', function(req,res){
+  res.render('admin/addUser')
+});
 
 
 

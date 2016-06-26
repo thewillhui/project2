@@ -24,11 +24,12 @@ const userSchema = new mongoose.Schema({
     firstName:  { type: String, required: true},
     familyName: { type: String, required: true},
     phone:      { type: String, required: true},
+    picture:    { type: String, default: '' },
     address:    {
+      estate: String,
       flat: String,
       floor: Number,
-      block: Number,
-      estate: String
+      block: Number
     },
     createdAt: { type: Date, default: Date.now},
     updatedAt: Date
@@ -62,19 +63,19 @@ userSchema.methods.comparePassword = function (candidatePassword, cb) {
   });
 };
 
-// /**
-//  * Helper method for getting user's gravatar.
-//  */
-// userSchema.methods.gravatar = function (size) {
-//   if (!size) {
-//     size = 200;
-//   }
-//   if (!this.email) {
-//     return `https://gravatar.com/avatar/?s=${size}&d=retro`;
-//   }
-//   const md5 = crypto.createHash('md5').update(this.email).digest('hex');
-//   return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
-// };
+/**
+ * Helper method for getting user's gravatar.
+ */
+userSchema.methods.gravatar = function (size) {
+  if (!size) {
+    size = 200;
+  }
+  if (!this.email) {
+    return `https://gravatar.com/avatar/?s=${size}&d=retro`;
+  }
+  const md5 = crypto.createHash('md5').update(this.email).digest('hex');
+  return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
+};
 
 const User = mongoose.model('User', userSchema);
 

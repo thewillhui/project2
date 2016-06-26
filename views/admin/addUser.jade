@@ -1,0 +1,61 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 ADD NEW USER
+  .form.col-sm-12
+    form.form-horizontal(action='admin/addUser',method='post')
+      .form-group
+        label.col-sm-3.control-label(for='salutation') Salutation
+        .col-sm-3
+          select.form-control
+            option Mr
+            option Mrs
+            option Ms
+      .form-group
+        label.col-sm-3.control-label(for='firstName') First Name
+        .col-sm-9
+          input#firstName.form-control(type='text', placeholder='First Name')
+      .form-group
+        label.col-sm-3.control-label(for='familyName') Family Name
+        .col-sm-9
+          input#familyName.form-control(type='text', placeholder='Family Name')
+      .form-group
+        label.col-sm-3.control-label(for='email') Email
+        .col-sm-9
+          input#email.form-control(type='email', placeholder='Email Address')
+      .form-group
+        label.col-sm-3.control-label(for='password') Password
+        .col-sm-9
+          input#password.form-control(type='password', placeholder='Password')
+      .form-group
+        label.col-sm-3.control-label(for='confirmPassword') Confirm Password
+        .col-sm-9
+          input#confirmPassword.form-control(type='password', placeholder='Confirm Password')
+      .form-group
+        label.col-sm-3.control-label(for='confirmPassword') Phone number
+        .col-sm-9
+          input#phone.form-control(type='number', placeholder='Phone Number')
+      .form-group
+        label.col-sm-3.control-label(for='estate') Estate
+        .col-sm-9
+          input#estate.form-control(type='text', placeholder='Estate')
+      .form-group
+        label.col-sm-3.control-label(for='flat') Flat
+        .col-sm-9
+          input#flat.form-control(type='text', placeholder='Flat')
+      .form-group
+        label.col-sm-3.control-label(for='flat') Floor
+        .col-sm-9
+          input#floor.form-control(type='number', placeholder='Floor')
+      .form-group
+        label.col-sm-3.control-label(for='flat') Block
+        .col-sm-9
+          input#block.form-control(type='number', placeholder='Block')
+      .form-group
+        label.col-sm-3.control-label(for='isAdmin') Admin user
+        .checkbox
+          input.col-sm-2(type='checkbox', value='false')
+      .form-group
+        .col-sm-offset-3.col-sm-9
+          button.btn.btn-success(type='submit') Add user
