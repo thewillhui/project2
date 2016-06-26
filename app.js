@@ -211,6 +211,14 @@ app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRed
 });
 
 /**
+ * Custom routes
+ */
+
+// app.get()
+
+
+
+/**
  * Error Handler.
  */
 app.use(errorHandler());

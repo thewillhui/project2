@@ -3,11 +3,11 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  email: { type: String, unique: true },
+  email: { type: String, required: true, unique: true },
   password: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-
+  tokens: Array,
   // facebook: String,
   // twitter: String,
   // google: String,
@@ -15,24 +15,27 @@ const userSchema = new mongoose.Schema({
   // instagram: String,
   // linkedin: String,
   // steam: String,
-  tokens: Array,
+
 
   profile: {
-    name: { type: String, default: '' },
-    salutation: String,
-    firstName: String,
-    familyName: String,
-    email: String,
-    password: String,
-    mobile: Number,
-    address: {
+    // name: { type: String, default: '' },
+    isAdmin:    { type: Boolean, default: false},
+    salutation: { type: String, required: true},
+    firstName:  { type: String, required: true},
+    familyName: { type: String, required: true},
+    phone:      { type: String, required: true},
+    address:    {
       flat: String,
       floor: Number,
       block: Number,
       estate: String
-    }
+    },
+    createdAt: { type: Date, default: Date.now},
+    updatedAt: Date
   }
 }, { timestamps: true });
+
+
 
 /**
  * Password hash middleware.
@@ -74,5 +77,6 @@ userSchema.methods.comparePassword = function (candidatePassword, cb) {
 // };
 
 const User = mongoose.model('User', userSchema);
+
 
 module.exports = User;

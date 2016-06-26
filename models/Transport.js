@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const transportSchema = new mongoose.Schema({
+const TransportSchema = new mongoose.Schema({
 
   transport: {
-    mode: {type: String, default:''},       //bus or ferry
+    mode: {type: String, default:'', required: true},       //bus or ferry
     number: { type: String, default: '' }, //bus number
-    origin: { type: String, default: ''}
-    destination: { type: String, default: '' },
+    origin: { type: String, default: ''},
+    destination: { type: String, default: '', required: true},
     fare: { resident: Number, visitor: Number },
     schedule: { weekdays: Array, weekends: Array, publicHolidays: Array}
   }
