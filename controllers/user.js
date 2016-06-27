@@ -41,8 +41,14 @@ exports.postLogin = (req, res, next) => {
     }
     req.logIn(user, (err) => {
       if (err) { return next(err); }
+      console.log(req.user)
+      if(req.user.profile.isAdmin){
+        req.flash('success', { msg: 'Success! You are logged in as Admin.' });
+        res.redirect('/admin');
+      } else {
       req.flash('success', { msg: 'Success! You are logged in.' });
       res.redirect(req.session.returnTo || '/');
+    };
     });
   })(req, res, next);
 };
@@ -91,7 +97,7 @@ console.log(req.body);
     email: req.body.email,
     password: req.body.password,
     profile:{
-    isAdmin: req.body.isAdmin || false,
+    isAdmin: req.body.isAdmin,
     salutation: req.body.salutation,
     firstName: req.body.firstName,
     familyName: req.body.familyName,
@@ -107,7 +113,7 @@ console.log(req.body);
   User.findOne({ email: req.body.email }, (err, existingUser) => {
     if (existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists.' });
-      return res.redirect('admin/addUser');
+      return res.redirect('./addUser');
     }
     user.save((err) => {
       if (err) { return next(err); }
