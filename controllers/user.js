@@ -64,8 +64,8 @@ exports.getSignup = (req, res) => {
   if (req.user) {
     return res.redirect('/');
   }
-  res.render('account/signup', {
-    title: 'Create Account'
+  res.render('admin/addUser', {
+    title: 'Add new user'
   });
 };
 
@@ -79,22 +79,35 @@ exports.postSignup = (req, res, next) => {
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
   req.sanitize('email').normalizeEmail({ remove_dots: false });
 
-  const errors = req.validationErrors();
 
+  const errors = req.validationErrors();
+console.log(req.body);
   if (errors) {
     req.flash('errors', errors);
-    return res.redirect('/signup');
+    return res.redirect('/admin/addUser');
   }
 
   const user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    profile:{
+    isAdmin: req.body.isAdmin || false,
+    salutation: req.body.salutation,
+    firstName: req.body.firstName,
+    familyName: req.body.familyName,
+    phone: req.body.phone,
+    address:    {
+      estate: req.body.estate,
+      flat: req.body.flat,
+      floor: req.body.floor,
+      block: req.body.block
+    }}
   });
 
   User.findOne({ email: req.body.email }, (err, existingUser) => {
     if (existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists.' });
-      return res.redirect('/signup');
+      return res.redirect('admin/addUser');
     }
     user.save((err) => {
       if (err) { return next(err); }
