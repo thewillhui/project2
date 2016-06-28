@@ -2,25 +2,18 @@ extends ../layout
 
 block content
   .page-header
-    h3 ADD NEW USER
+    h3 ADD NEW FACILITY
   .form.col-sm-12
     form.form-horizontal(action='./addUser',method='post')
       input(type='hidden', name='_csrf', value=_csrf)
       .form-group
-        label.col-sm-3.control-label(for='salutation') Salutation
-        .col-sm-3
-          select.form-control(name='salutation')
-            option Mr
-            option Mrs
-            option Ms
-      .form-group
-        label.col-sm-3.control-label(for='firstName') First Name
+        label.col-sm-3.control-label(for='clubhouseName') Clubhouse name
         .col-sm-9
-          input#firstName.form-control(name='firstName' type='text', placeholder='First Name')
+          input#clubhouseName.form-control(name='clubhouseName' type='text', placeholder='Clubhouse Name')
       .form-group
-        label.col-sm-3.control-label(for='familyName') Family Name
+        label.col-sm-3.control-label(for='facilityName') Facility name
         .col-sm-9
-          input#familyName.form-control(name='familyName' type='text', placeholder='Family Name')
+          input#facilityName.form-control(name='facilityName' type='text', placeholder='Facility Name')
       .form-group
         label.col-sm-3.control-label(for='email') Email
         .col-sm-9

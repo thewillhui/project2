@@ -113,8 +113,10 @@ app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 
 //admin signup page
-app.get('/admin/addUser', userController.getSignup);
-app.post('/admin/addUser', userController.postSignup);
+app.get('/admin/addUser', userController.getSignup, passportConfig.isAuthenticated);
+app.post('/admin/addUser', userController.postSignup, passportConfig.isAuthenticated);
+app.get('/admin', passportConfig.isAuthenticated)
+app.get('/facilities', passportConfig.isAuthenticated)
 
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
@@ -217,11 +219,15 @@ app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRed
  * Custom routes
  */
 
+//admin homepage
+app.get('/admin/', function(req,res){
+  res.render('admin/adminHome')
+});
+
+//admin add new user page
 app.get('/admin/addUser', function(req,res){
   res.render('admin/addUser')
 });
-
-
 
 /**
  * Error Handler.

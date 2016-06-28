@@ -67,12 +67,17 @@ exports.logout = (req, res) => {
  * Signup page.
  */
 exports.getSignup = (req, res) => {
-  if (req.user) {
-    return res.redirect('/');
-  }
+  // if (req.user) {
+  //   return res.redirect('/');
+  // }
+  if (req.user.profile.isAdmin){
   res.render('admin/addUser', {
     title: 'Add new user'
-  });
+  })
+  } else {
+    req.flash('success', { msg:'You are not authorized to view this page'});
+    res.redirect('/login')
+  };
 };
 
 /**
@@ -87,7 +92,6 @@ exports.postSignup = (req, res, next) => {
 
 
   const errors = req.validationErrors();
-console.log(req.body);
   if (errors) {
     req.flash('errors', errors);
     return res.redirect('/admin/addUser');
