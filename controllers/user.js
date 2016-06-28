@@ -70,7 +70,7 @@ exports.getSignup = (req, res) => {
   // if (req.user) {
   //   return res.redirect('/');
   // }
-  res.render('admin/addUser'), {
+  res.render('admin/addUser'), {  //allow any user to access the add user page for testing
     title: 'Add new User'
   }
   // if (req.user.profile.isAdmin){
@@ -162,10 +162,12 @@ exports.postUpdateProfile = (req, res, next) => {
   User.findById(req.user.id, (err, user) => {
     if (err) { return next(err); }
     user.email = req.body.email || '';
-    user.profile.name = req.body.name || '';
-    user.profile.gender = req.body.gender || '';
-    user.profile.location = req.body.location || '';
-    user.profile.website = req.body.website || '';
+    user.profile.firstName = req.body.firstName || '';
+    user.profile.familyName = req.body.familyName || '';
+    user.profile.address.estate = req.body.estate || '';
+    user.profile.address.block = req.body.block || '';
+    user.profile.address.floor = req.body.floor || '';
+    user.profile.address.flat = req.body.flat || '';
     user.save((err) => {
       if (err) {
         if (err.code === 11000) {

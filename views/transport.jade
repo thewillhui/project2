@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .row
+    .transport.col-sml-3
+      h1 Available routes
+      h3 Ferry
+      each val, index in transportArr
+        - var mode = (val.transport.mode)
+        if mode == "Ferry"
+          a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
+      h3 Bus
+      each val, index in transportArr
+        - var mode = (val.transport.mode)
+        if mode == "Bus"
+          a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
+
+
+    .schedule.col-sml-9
+      table.table.table-hover
+        th
+          h4 Weekdays
+              each val, index in transportArr
+                  each v, index in val.transport.schedule.fromOrigin.weekdays
+                    tr
+                      td= v

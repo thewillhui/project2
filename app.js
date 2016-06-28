@@ -31,6 +31,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+const transportController = require('./controllers/transport');
 
 /**
  * API keys and Passport configuration.
@@ -115,8 +116,11 @@ app.post('/reset/:token', userController.postReset);
 //admin signup page
 app.get('/admin/addUser', userController.getSignup, passportConfig.isAuthenticated);
 app.post('/admin/addUser', userController.postSignup, passportConfig.isAuthenticated);
-app.get('/admin', passportConfig.isAuthenticated)
-app.get('/facilities', passportConfig.isAuthenticated)
+app.get('/admin', passportConfig.isAuthenticated);
+app.get('/facilities', passportConfig.isAuthenticated);
+app.get('/transport', transportController.getTransport);
+app.get('/transport/:id', transportController.getSchedule);
+
 
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);

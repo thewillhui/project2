@@ -13,3 +13,15 @@ margin: 10px 10px;
 .adminMenu img:hover{
   border: 1px solid black;
 }
+
+.transport .schedule{
+  display: inline-block;
+}
+
+
+
+.schedule li{
+  display: block;
+  margin: 0px 5px;
+  list-style-type: none;
+}
