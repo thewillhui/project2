@@ -1,3 +1,8 @@
+.background{
+  background-image: url(/images/parkisland-pool-blur.png);
+}
+
+/*for aligning the menu icons when admin logs in*/
 .adminMenu {
 display: inline-block;
 list-style-type: none;

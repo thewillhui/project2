@@ -12,8 +12,10 @@ const TransportSchema = new mongoose.Schema({
       visitor: String
     },
     schedule: {
-      fromOrigin: { weekdays: Array },
-      fromDestination: { weekendsAndPh: Array }
+      fromOriginWeekdays: Array,
+      fromOriginWeekendsAndPh: Array,
+      fromDestinationWeekdays: Array,
+      fromDestinationWeekendsAndPh: Array
     }
   }
 });

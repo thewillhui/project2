@@ -1,0 +1,29 @@
+script.
+  var $timetable = res.json(scheduleArr.transport.schedule),
+      myTimetable = JSON.parse($timetable.text());
+    $('#timetable').dynatable({
+      dataset: {
+        records: myTimetable
+      }
+    });
+
+table.table.table-hover
+      table#timetable
+        thead
+          th Weekdays
+          th Weekends
+        tbody
+
+
+//- .schedule.col-sml-9
+//-   table.table.table-hover
+//-     th
+//-       h4 Weekdays
+//-         each val, index in scheduleArr.transport.schedule.fromOriginWeekdays
+//-             tr
+//-               td= val
+//-     th
+//-       h4 Weekends
+//-           each v, index in scheduleArr.transport.schedule.fromOriginWeekendsAndPh
+//-                 tr
+//-                   td= v
