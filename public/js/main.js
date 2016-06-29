@@ -5,11 +5,23 @@ $(document).ready(function() {
     event.preventDefault();
     $.ajax({
       method: "GET",
-      url: $(this).attr('href')
+      url: $(this).attr('href') //gets the link based on the link generated in the transport jade file
     }).done(function(transportArr) {
-      console.log(transportArr);
       $('#schedule').empty(); //empties the div before appending
-      $('#schedule').append(transportArr);
+      $('#schedule').append(transportArr); //appends the corresponding schedule from the array
     });
+    $.ajax({
+      method: "GET",
+      url: '/calendar',
+      dataType: 'json'
+    }).done(function(data){
+      console.log(data)
+
+    })
+
+
   });
+
+
+
 });

@@ -2,6 +2,7 @@ extends layout
 
 block content
   .row
+    #countdown.col-md-12
     #transport.col-md-2
       h2 Transport information
       #ferry
@@ -18,3 +19,5 @@ block content
                 a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
 
     #schedule.col-md-10
+  .row
+    .col-md-12

@@ -1,0 +1,22 @@
+{
+  "name": "project2",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Will Hui <will@willhui.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/thewillhui/project2",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery.countdown": "^2.1.0",
+    "moment": "^2.13.0"
+  }
+}

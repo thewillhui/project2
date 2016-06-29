@@ -18,6 +18,7 @@ const expressValidator = require('express-validator');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
+const ical = require('ical');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -32,6 +33,7 @@ const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 const transportController = require('./controllers/transport');
+const calendarController = require('./controllers/calendar')
 
 /**
  * API keys and Passport configuration.
@@ -120,6 +122,7 @@ app.get('/admin', passportConfig.isAuthenticated);
 app.get('/facilities', passportConfig.isAuthenticated);
 app.get('/transport', transportController.getTransport);
 app.get('/transport/:id', transportController.getSchedule);
+app.get('/calendar', calendarController.getCal);
 
 
 app.get('/contact', contactController.getContact);
