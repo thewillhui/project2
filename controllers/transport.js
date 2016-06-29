@@ -25,8 +25,14 @@ exports.getSchedule = (req, res) => {
 
   Transport.findById(id, function(err, scheduleArr) {
 
-    res.json(scheduleArr.transport.schedule)
+    // res.json(scheduleArr.transport.schedule)
 
+    res.render('schedule', {
+      title: 'Transport Information',
+      scheduleArr: scheduleArr
+    });
+
+    // console.log(scheduleArr)
 
   });
 

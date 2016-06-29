@@ -2,46 +2,19 @@ extends layout
 
 block content
   .row
-    .transport.col-sml-3
-      h1 Transport information
-      .ferry
+    #transport.col-md-2
+      h2 Transport information
+      #ferry
         h3 Ferry
+        each val, index in transportArr
+          - var mode = (val.transport.mode)
+              if mode == "Ferry"
+                a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
+      #bus
+        h3 Bus
+        each val, index in transportArr
+          - var mode = (val.transport.mode)
+              if mode == "Bus"
+                a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
 
-      each val, index in transportArr
-        - var mode = (val.transport.mode)
-        if mode == "Ferry"
-          a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
-      h3 Bus
-      each val, index in transportArr
-        - var mode = (val.transport.mode)
-        if mode == "Bus"
-          a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
-
-
-    a#ferry link
-    #bus
-      a(href='')
-  //- script.
-  //-   for(i=0, i=transportArr.length, i++){
-  //-   var mode = (transportArr.transport.mode)
-  //-   if (mode === "Ferry"){
-  //-     $('.ferry').html(#{transportArr.transport.origin} + '<>' + #{transportArr.transport.destination})
-  //-     }
-  //-   }
-script.
-  $('#ferry').on('click', function(event) {
-  console.log('event');
-   event.preventDefault();
-   $.ajax(this.href, {
-   type: 'GET',
-      success: function(transportArr) {
-         if(transportArr.transport.mode === 'Ferry'){
-         var transport = transportArr.transport.schedule.fromOriginWeekdays
-         $('#fschedule').text(transport)
-         }
-      },
-      error: function() {
-
-      }
-   });
-});
+    #schedule.col-md-10

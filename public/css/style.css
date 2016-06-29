@@ -2,6 +2,17 @@
   background-image: url(/images/parkisland-pool-blur.png);
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/*align logo on homepage*/
+.logo {
+  margin-top: -10px;
+  height: 40px;
+}
+
 /*for aligning the menu icons when admin logs in*/
 .adminMenu {
 display: inline-block;
@@ -19,14 +30,9 @@ margin: 10px 10px;
   border: 1px solid black;
 }
 
-.transport .schedule{
-  display: inline-block;
+#schedule th{
+  vertical-align: top;
+  word-wrap: break-word;
+  max-width: 100px;
 }
 
-
-
-.schedule li{
-  display: block;
-  margin: 0px 5px;
-  list-style-type: none;
-}
