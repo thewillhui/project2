@@ -11,8 +11,6 @@ exports.getTransport = (req, res) => {
       transportArr: transportArr
     });
 
-    // http://domain//transport/abc28763cbc
-
   });
 
 };

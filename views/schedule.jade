@@ -1,3 +1,8 @@
+.row
+  .col-md-12
+    h3 Next #{scheduleArr.transport.mode} from #{scheduleArr.transport.origin} in
+      span#countdown
+
 table#timetable.table.table-condensed.col-md-12
   thead
     th From
@@ -16,16 +21,16 @@ table#timetable.table.table-condensed.col-md-12
       p Public Holidays
   tbody
     tr
-      td
+      td.weekday.origin
         each val in scheduleArr.transport.schedule.fromOriginWeekdays
           p= val
-      td
+      td.weekday.destination
         each val in scheduleArr.transport.schedule.fromDestinationWeekdays
           p= val
-      td
+      td.weekend.origin
         each val in scheduleArr.transport.schedule.fromOriginWeekendsAndPh
           p= val
-      td
+      td.weekend.destination
         each val in scheduleArr.transport.schedule.fromDestinationWeekendsAndPh
           p= val
 

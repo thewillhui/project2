@@ -2,15 +2,14 @@ extends layout
 
 block content
   .row
-    #countdown.col-md-12
     #transport.col-md-2
       h2 Transport information
       #ferry
         h3 Ferry
         each val, index in transportArr
           - var mode = (val.transport.mode)
-              if mode == "Ferry"
-                a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
+            if mode == "Ferry"
+              a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
       #bus
         h3 Bus
         each val, index in transportArr
@@ -18,6 +17,7 @@ block content
               if mode == "Bus"
                 a(href= "/transport/#{val._id}" ) #{val.transport.origin} <> #{val.transport.destination}
 
-    #schedule.col-md-10
-  .row
-    .col-md-12
+    //- .col-md-6
+    //-   h3 Next #{transportArr.transport.mode} from #{transportArr.transport.destination} in  mins
+
+    #schedule.col-md-12
