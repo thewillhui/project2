@@ -18,8 +18,8 @@ const expressValidator = require('express-validator');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
-const ical = require('ical');
 const bower = require('bower');
+
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -109,7 +109,7 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 /**
  * Primary app routes.
  */
-app.get('/', homeController.index);
+// app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
@@ -220,30 +220,36 @@ app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRed
  * Custom routes
  */
 
-//admin homepage
+//===============
+//  Admin pages
+//===============
 app.get('/admin/', function(req,res){
   res.render('admin/adminHome')
 });
-
-
 app.get('/admin/addUser', userController.getSignup, passportConfig.isAuthenticated);
 app.get('/admin/addUser', function(req,res){
   res.render('admin/addUser')
 });
 //admin add new user page
 app.post('/admin/addUser', userController.postSignup, passportConfig.isAuthenticated);
-
 app.get('/admin', passportConfig.isAuthenticated);
 // app.get('/facilities', passportConfig.isAuthenticated);
 app.get('/transport', transportController.getTransport);
 app.get('/transport/:id', transportController.getSchedule);
 // app.get('/calendar', calendarController.getCal);
-app.get('/admin/newPost', blogController.getBlog, passportConfig.isAuthenticated);
+app.get('/admin/newPost', blogController.newBlog, passportConfig.isAuthenticated);
 app.post('/admin/newPost', blogController.postBlog, passportConfig.isAuthenticated)
 app.get('/admin/viewPosts', blogController.getPosts, passportConfig.isAuthenticated);
 app.get('/admin/viewPosts/:id', blogController.showPost, passportConfig.isAuthenticated);
-app.post('/admin/viewPosts/', blogController.updatePost, passportConfig.isAuthenticated);
+app.post('/admin/viewPosts/update', blogController.updatePost, passportConfig.isAuthenticated);
+app.post('/admin/viewPosts/delete', blogController.deletePost, passportConfig.isAuthenticated);
 
+//==============
+//     Home
+//==============
+
+app.get('/', blogController.getBlogHome, passportConfig.isAuthenticated);
+app.locals.moment = require('moment');
 /**
  * Error Handler.
  */

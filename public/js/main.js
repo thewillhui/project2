@@ -1,8 +1,4 @@
 $(document).ready(function() {
-  //==========================
-  //    Admin add new post
-  //==========================
-
 
   //==========================
   //    Admin view/edit all posts

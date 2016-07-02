@@ -49,9 +49,13 @@ img {
   font-weight: bold;
 }
 
-#allPosts {
+#allPosts, #blog {
   overflow-y: auto;
   height: 500px;
+}
+
+#author {
+  text-transform: capitalize;
 }
 
 .article {

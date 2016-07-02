@@ -1,17 +1,23 @@
 extends layout
 
-
 block content
   h1 The Park Island Hub
   p.lead The only place a Park Islander needs to visit.
   hr
   .row
-    .col-sm-9
-      h2 Donald Trump's surprise visit to Park Island
-      img(src='/images/trumpheli.jpg')
-      p Donald Trump has made a surprise visit to Park Island sparking fear and chaos across the estate.
-      p Residents are protesting for him to leave as soon as possible and armed police have been sent to deal with the situation.
-      a.btn.btn-default(href='#', role='button') Read more »
+    #blog.col-sm-9
+      -var date = blogHome.date
+        each val, index in blogHome
+          h2= val.title
+          h5 posted by
+            span#author= ' ' + val.author
+          h5= ' ' + moment(date).format("dddd, MMMM Do YYYY [at] HH:mm ")
+          p= val.body
+      //- h2 Donald Trump's surprise visit to Park Island
+      //- img(src='/images/trumpheli.jpg')
+      //- p Donald Trump has made a surprise visit to Park Island sparking fear and chaos across the estate.
+      //- p Residents are protesting for him to leave as soon as possible and armed police have been sent to deal with the situation.
+      //- a.btn.btn-default(href='#', role='button') Read more »
     .col-sm-3
       h2 Announcements
       h3 Noah's Ark floats away
