@@ -17,7 +17,6 @@ exports.getTransport = (req, res) => {
 
 
 exports.getSchedule = (req, res) => {
-
   // get id of the schedule
   var id = req.params.id;
 

@@ -41,8 +41,7 @@ exports.getPosts = (req, res) => {
 };
 
 exports.showPost = (req, res) => {
-
-var id = req.params.id;
+  var id = req.params.id;
 
   Blog.findById(id, function(err, blogPost) {
     res.render('admin/post', {
@@ -50,4 +49,28 @@ var id = req.params.id;
       blogPost: blogPost
     });
   });
+
+};
+
+exports.updatePost = (req, res) => {
+
+  var id = req.body._id;
+  console.log(id)
+  Blog.findById(id, function(err, blog) {
+    console.log(req.body)
+    console.log('this is the blog ' + blog)
+    blog.title = req.body.title || '';
+    blog.body = req.body.body || '';
+
+  blog.save(function(err, blog) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(blog);
+
+    req.flash('success', { msg: 'Your post has been updated' });
+    res.redirect('./viewPosts')
+  });
+  });
+
 };

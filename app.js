@@ -105,6 +105,7 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
+
 /**
  * Primary app routes.
  */
@@ -238,16 +239,10 @@ app.get('/transport', transportController.getTransport);
 app.get('/transport/:id', transportController.getSchedule);
 // app.get('/calendar', calendarController.getCal);
 app.get('/admin/newPost', blogController.getBlog, passportConfig.isAuthenticated);
-app.get('/admin/newPost', function(req,res){
-  res.render('admin/newPost')
-});
 app.post('/admin/newPost', blogController.postBlog, passportConfig.isAuthenticated)
 app.get('/admin/viewPosts', blogController.getPosts, passportConfig.isAuthenticated);
-app.get('/admin/viewPosts', function(req,res){
-  res.render('admin/viewPosts')
-});
-app.get('/admin/viewPosts:id', blogController.showPost, passportConfig.isAuthenticated);
-
+app.get('/admin/viewPosts/:id', blogController.showPost, passportConfig.isAuthenticated);
+app.post('/admin/viewPosts/', blogController.updatePost, passportConfig.isAuthenticated);
 
 /**
  * Error Handler.

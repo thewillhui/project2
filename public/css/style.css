@@ -54,6 +54,12 @@ img {
   height: 500px;
 }
 
+.article {
+  overflow-y: auto;
+  height: 300px;
+}
+
+
 #schedule {
   overflow-y: auto;
   height: 600px;

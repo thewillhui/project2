@@ -1,4 +1,30 @@
 $(document).ready(function() {
+  //==========================
+  //    Admin add new post
+  //==========================
+
+
+  //==========================
+  //    Admin view/edit all posts
+  //==========================
+  $('#allPosts a').on('click', function(event) {
+    console.log('event')
+    event.preventDefault();
+    $.ajax({
+      method: "GET",
+      url: $(this).attr('href') //gets the link based on the link generated in the viewPosts jade file
+    }).done(function(blog) { //takes the data from the link above
+      $('#editPost').empty(); //empties the div before appending
+      $('#editPost').append(blog);
+    })
+  });
+
+
+
+
+  //==========================
+  //      Transport page
+  //==========================
   //script for the transport page to get the schedule and append to the schedule div
   $('#ferry a, #bus a').on('click', function(event) {
     console.log('event');
