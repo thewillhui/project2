@@ -17,7 +17,6 @@ $(document).ready(function() {
 
 
 
-
   //==========================
   //      Transport page
   //==========================
@@ -62,6 +61,7 @@ $(document).ready(function() {
 
         if (dayOfWeek == 6 && lastElemInt > 0 && timeNow > lastElemInt) {
           //check if the day of the week is saturday and if the last element of the schedule is after midnight. the currrent time also must be greater than the last element of the schedule. this determines if the current time is late friday night (sat morning technically) and still running on the weekday timetable. if the time is after the last element then should return the countdown from the weekend timetable
+
           $('#countdownO').text(' ' + originTimePh + ' mins');
           $('#countdownD').text(' ' + destTimePh + ' mins');
 
@@ -109,6 +109,7 @@ $(document).ready(function() {
 
       if (dateChanged) {
         var currTimeInSeconds = moment(currTimeStr, "HHmm").unix() - startOfDay; //if the date has changed calculate the current time by taking the currTimeStr and parsing it into unix format and subtracting the time value from the time at the start of the day
+
         var nextTransport = newStartOfDay + currTimeInSeconds; //if after midnight the next transport variable is defined by calculating the time at midnight (which is newStartOfDay) and the current time in seconds
       } else {
         var nextTransport = moment(currTimeStr, "HHmm").unix();

@@ -11,7 +11,7 @@ block content
           h2= val.title
           h5 posted by
             span#author= ' ' + val.author
-          h5= ' ' + moment(date).format("dddd, MMMM Do YYYY [at] HH:mm ")
+            span= ' on ' + moment(date).format("dddd, MMMM Do YYYY [at] HH:mm ")
           p= val.body
       //- h2 Donald Trump's surprise visit to Park Island
       //- img(src='/images/trumpheli.jpg')
