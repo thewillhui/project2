@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Add new blog post
+  .form.col-md-12
+    form.form-horizontal(action='./newPost',method='post')
+      input(type='hidden', name='_csrf', value=_csrf)
+      .form-group
+        label.control-label(for='title')
+        input#title.col-md-12.form-control(name='title' type='text', placeholder='Title')
+      .form-group
+        textarea#editor.col-md-12.form-control(name='body' rows='18')
+      .form-group
+        button.col-xs-12.col-md-offset-9.col-md-3.btn.btn-success(type='submit') Submit new post

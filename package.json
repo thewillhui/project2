@@ -16,6 +16,7 @@
     "body-parser": "^1.15.1",
     "bower": "^1.7.9",
     "cheerio": "^0.20.0",
+    "ckeditor": "^4.5.9",
     "clockwork": "^0.1.4",
     "compression": "^1.6.2",
     "connect-mongo": "^1.1.0",

@@ -1,8 +1,19 @@
 .row
-  .col-md-12
-    h3 Next #{scheduleArr.transport.mode} from #{scheduleArr.transport.origin} in
+  .nextTransport.col-md-6
+    h4 Next
+      span.mode  #{scheduleArr.transport.mode}
+      |  from
+      span.originDest  #{scheduleArr.transport.origin}
+      |  in
+    h2
       span#countdownO
-    h3 Next #{scheduleArr.transport.mode} from #{scheduleArr.transport.destination} in
+  .nextTransport.col-md-6
+    h4 Next
+      span.mode  #{scheduleArr.transport.mode}
+      |  from
+      span.originDest  #{scheduleArr.transport.destination}
+      |  in
+    h2
       span#countdownD
 table#timetable.table.table-condensed.col-md-12
   thead

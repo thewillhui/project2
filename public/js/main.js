@@ -9,14 +9,14 @@ $(document).ready(function() {
     }).done(function(transportArr) { //takes the data from the link above
       $('#schedule').empty(); //empties the div before appending
       $('#schedule').append(transportArr); //appends the corresponding schedule from the array
-    });
+    // });
 
-    $.ajax({ //function for calculating time remaining for next ferry/bus
-      method: "GET",
-      url: '/calendar', //gets the HK public holiday data from the ics
-      dataType: 'json'
-    }).done(function(data) {
-      console.log(data);
+    // $.ajax({ //function for calculating time remaining for next ferry/bus
+    //   method: "GET",
+    //   url: '/calendar', //gets the HK public holiday data from the ics
+    //   dataType: 'json'
+    // }).done(function(data) {
+    //   console.log(data);
       //list of arrays of time in string format with p tags
       var $fromOriginTime = $('.weekday.origin');
       var $fromDestTime = $('.weekday.destination');
@@ -24,21 +24,9 @@ $(document).ready(function() {
       var $fromDestTimePh = $('.weekend.destination');
 
       var dayOfWeek = moment().day(); //gets todays day of the week as an integer
-      var startOfDay = moment().startOf('day').unix()
-      var midnight = moment(startOfDay).endOf("day").add(1, "seconds").unix();
       var timeNow = moment().format('HHmm');
 
-
-      //testing
-      // var test = calTime($fromOriginTime)
-      // $('#countdownO').text(' ' + test + ' mins')
-      // $('#countdownD').text(' ' + test + ' mins')
-
-
-
-      var endOfDay = moment().endOf('day');
-
-      var findLastElem = function($array) {
+      var showCountdown = function($array) {
         var $times = $array.find('p');
         var lastElem = $times[$times.length - 1];
         var lastElemStr = $(lastElem).text();
@@ -51,16 +39,12 @@ $(document).ready(function() {
 
 
         if (dayOfWeek == 6 && lastElemInt > 0 && timeNow > lastElemInt) {
-          //display weekend
-
+          //check if the day of the week is saturday and if the last element of the schedule is after midnight. the currrent time also must be greater than the last element of the schedule. this determines if the current time is late friday night (sat morning technically) and still running on the weekday timetable. if the time is after the last element then should return the countdown from the weekend timetable
           $('#countdownO').text(' ' + originTimePh + ' mins');
           $('#countdownD').text(' ' + destTimePh + ' mins');
-          //check if the last time is after midnight
-          //check the last time for both origin and destination for weekday schedule/weekend schedule
-          //check if current time now is greater than those times
-          //if not then display weekdays otherwise display weekend
-        } else if (dayOfWeek == 1 && lastElemInt > 0 && timeNow > lastElemInt) {
 
+        } else if (dayOfWeek == 1 && lastElemInt > 0 && timeNow > lastElemInt) {
+          //similar to above but checks if it's sunday and if it should switch to weekday
           $('#countdownO').text(' ' + originTime + ' mins');
           $('#countdownD').text(' ' + destTime + ' mins');
         } else {
@@ -69,16 +53,14 @@ $(document).ready(function() {
           $('#countdownD').text(' ' + destTime + ' mins');
         }
       };
-      findLastElem($fromOriginTime);
-      findLastElem($fromDestTime);
-      findLastElem($fromOriginTimePh);
-      findLastElem($fromDestTimePh);
-
-
-      console.log(calTime($fromOriginTime));
-      console.log(calTime($fromDestTime));
-      console.log(calTime($fromOriginTimePh));
-      console.log(calTime($fromDestTimePh));
+      showCountdown($fromOriginTime);
+      showCountdown($fromDestTime);
+      showCountdown($fromOriginTimePh);
+      showCountdown($fromDestTimePh);
+      // console.log(calTime($fromOriginTime));
+      // console.log(calTime($fromDestTime));
+      // console.log(calTime($fromOriginTimePh));
+      // console.log(calTime($fromDestTimePh));
     });
   })
 

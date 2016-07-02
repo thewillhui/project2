@@ -34,8 +34,8 @@ const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 const transportController = require('./controllers/transport');
-const calendarController = require('./controllers/calendar')
-
+const calendarController = require('./controllers/calendar');
+const blogController = require('./controllers/blog');
 /**
  * API keys and Passport configuration.
  */
@@ -116,15 +116,6 @@ app.get('/forgot', userController.getForgot);
 app.post('/forgot', userController.postForgot);
 app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
-
-//admin signup page
-app.get('/admin/addUser', userController.getSignup, passportConfig.isAuthenticated);
-app.post('/admin/addUser', userController.postSignup, passportConfig.isAuthenticated);
-app.get('/admin', passportConfig.isAuthenticated);
-app.get('/facilities', passportConfig.isAuthenticated);
-app.get('/transport', transportController.getTransport);
-app.get('/transport/:id', transportController.getSchedule);
-app.get('/calendar', calendarController.getCal);
 
 
 app.get('/contact', contactController.getContact);
@@ -233,10 +224,30 @@ app.get('/admin/', function(req,res){
   res.render('admin/adminHome')
 });
 
-//admin add new user page
+
+app.get('/admin/addUser', userController.getSignup, passportConfig.isAuthenticated);
 app.get('/admin/addUser', function(req,res){
   res.render('admin/addUser')
 });
+//admin add new user page
+app.post('/admin/addUser', userController.postSignup, passportConfig.isAuthenticated);
+
+app.get('/admin', passportConfig.isAuthenticated);
+// app.get('/facilities', passportConfig.isAuthenticated);
+app.get('/transport', transportController.getTransport);
+app.get('/transport/:id', transportController.getSchedule);
+// app.get('/calendar', calendarController.getCal);
+app.get('/admin/newPost', blogController.getBlog, passportConfig.isAuthenticated);
+app.get('/admin/newPost', function(req,res){
+  res.render('admin/newPost')
+});
+app.post('/admin/newPost', blogController.postBlog, passportConfig.isAuthenticated)
+app.get('/admin/viewPosts', blogController.getPosts, passportConfig.isAuthenticated);
+app.get('/admin/viewPosts', function(req,res){
+  res.render('admin/viewPosts')
+});
+app.get('/admin/viewPosts:id', blogController.showPost, passportConfig.isAuthenticated);
+
 
 /**
  * Error Handler.
