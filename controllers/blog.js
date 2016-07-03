@@ -14,13 +14,14 @@ exports.newBlog = (req, res) => {
 
 exports.postBlog = (req, res) => {
 
-  console.log(req.user);
 
   const newPost = new Blog({
     title: req.body.title,
     body: req.body.body,
-    author: req.user.profile.firstName
+    author: req.user.profile.firstName,
+    files: req.body.files
   })
+
 
   newPost.save((err, newPost) => {
     if (err) {

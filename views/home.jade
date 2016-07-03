@@ -12,7 +12,7 @@ block content
           h5 posted by
             span#author= ' ' + val.author
             span= ' on ' + moment(date).format("dddd, MMMM Do YYYY [at] HH:mm ")
-          p= val.body
+          p!= val.body
       //- h2 Donald Trump's surprise visit to Park Island
       //- img(src='/images/trumpheli.jpg')
       //- p Donald Trump has made a surprise visit to Park Island sparking fear and chaos across the estate.

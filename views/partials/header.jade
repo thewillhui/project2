@@ -16,6 +16,19 @@
           a(href='/transport') Transport info
         li(class=(title == 'Contact') ? 'active' : undefined)
           a(href='/contact') Contact
+        if user.profile.isAdmin
+          li.dropdown(class=(title == 'Admin') ? 'active' : undefined)
+            a.dropdown-toggle(href='#', data-toggle='dropdown') Admin menu
+              i.caret
+            ul.dropdown-menu
+              li(class=(title == 'Admin') ? 'active' : undefined)
+                a(href='/admin') Admin panel
+              li
+                a(href='/admin/addUser') Add new user
+              li
+                a(href='/admin/newPost') Add new blog post
+              li
+                a(href='/admin/viewPosts') View/edit blog posts
 
       ul.nav.navbar-nav.navbar-right
         if !user

@@ -243,6 +243,9 @@ app.get('/admin/viewPosts', blogController.getPosts, passportConfig.isAuthentica
 app.get('/admin/viewPosts/:id', blogController.showPost, passportConfig.isAuthenticated);
 app.post('/admin/viewPosts/update', blogController.updatePost, passportConfig.isAuthenticated);
 app.post('/admin/viewPosts/delete', blogController.deletePost, passportConfig.isAuthenticated);
+app.post('/admin/newPost', multer({ dest: 'uploads/'}).single('body'), function(req,res){
+  console.log(req.body); //form fields
+});
 
 //==============
 //     Home
