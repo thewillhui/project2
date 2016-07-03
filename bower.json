@@ -18,6 +18,7 @@
   "dependencies": {
     "jquery.countdown": "^2.1.0",
     "moment": "^2.13.0",
-    "bootstrap-wysiwyg": "*"
+    "bootstrap-wysiwyg": "*",
+    "jquery-peek-a-bar": "jquery.peekABar#^1.0.1"
   }
 }

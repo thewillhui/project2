@@ -1,8 +1,7 @@
 $(document).ready(function() {
-
-  //==========================
+  //===================================
   //    Admin view/edit all posts
-  //==========================
+  //===================================
   $('#allPosts a').on('click', function(event) {
     console.log('event')
     event.preventDefault();
