@@ -224,12 +224,11 @@ app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRed
 //  Admin pages
 //===============
 app.get('/admin/', function(req,res){
-  res.render('admin/adminHome')
+  res.render('admin/adminHome', {
+    title: 'Admin panel'
+  })
 });
 app.get('/admin/addUser', userController.getSignup, passportConfig.isAuthenticated);
-app.get('/admin/addUser', function(req,res){
-  res.render('admin/addUser')
-});
 //admin add new user page
 app.post('/admin/addUser', userController.postSignup, passportConfig.isAuthenticated);
 app.get('/admin', passportConfig.isAuthenticated);

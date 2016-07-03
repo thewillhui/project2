@@ -1,16 +1,19 @@
 extends ../layout
 
 block content
-  .page-header
-    h3 View all blog posts
-  #allPosts.form.col-md-3
-    ul.list-unstyled
-      each val, index in blog
-        - var title = (val.title)
-            li
-              h4
-                a(href= "/admin/viewPosts/#{val._id}" ) #{val.title}
-              | by #{val.author}
-              br
-              | #{val.date}
-  #editPost.form.col-md-9
+  if !user.profile.isAdmin
+    h1 Sorry you are not authorised to view this page!
+  else
+    .page-header
+      h3 View all blog posts
+    #allPosts.form.col-md-3
+      ul.list-unstyled
+        each val, index in blog
+          - var title = (val.title)
+              li
+                h4
+                  a(href= "/admin/viewPosts/#{val._id}" ) #{val.title}
+                | by #{val.author}
+                br
+                | #{val.date}
+    #editPost.form.col-md-9

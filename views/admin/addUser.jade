@@ -1,62 +1,65 @@
 extends ../layout
 
 block content
-  .page-header
-    h3 Add new user
-  .form.col-sm-12
-    form.form-horizontal(action='./addUser',method='post')
-      input(type='hidden', name='_csrf', value=_csrf)
-      .form-group
-        label.col-sm-3.control-label(for='salutation') Salutation
-        .col-sm-3
-          select.form-control(name='salutation')
-            option Mr
-            option Mrs
-            option Ms
-      .form-group
-        label.col-sm-3.control-label(for='firstName') First Name
-        .col-sm-9
-          input#firstName.form-control(name='firstName' type='text', placeholder='First Name')
-      .form-group
-        label.col-sm-3.control-label(for='familyName') Family Name
-        .col-sm-9
-          input#familyName.form-control(name='familyName' type='text', placeholder='Family Name')
-      .form-group
-        label.col-sm-3.control-label(for='email') Email
-        .col-sm-9
-          input#email.form-control(name='email' type='email', placeholder='Email Address')
-      .form-group
-        label.col-sm-3.control-label(for='password') Password
-        .col-sm-9
-          input#password.form-control(name='password' type='password', placeholder='Password')
-      .form-group
-        label.col-sm-3.control-label(for='confirmPassword') Confirm Password
-        .col-sm-9
-          input#confirmPassword.form-control(name='confirmPassword' type='password', placeholder='Confirm Password')
-      .form-group
-        label.col-sm-3.control-label(for='phone') Phone number
-        .col-sm-9
-          input#phone.form-control(name='phone' type='number', placeholder='Phone Number')
-      .form-group
-        label.col-sm-3.control-label(for='estate') Estate
-        .col-sm-9
-          input#estate.form-control(name='estate' type='text', placeholder='Estate')
-      .form-group
-        label.col-sm-3.control-label(for='flat') Flat
-        .col-sm-9
-          input#flat.form-control(name='flat' type='text', placeholder='Flat')
-      .form-group
-        label.col-sm-3.control-label(for='flat') Floor
-        .col-sm-9
-          input#floor.form-control(name='floor' type='number', placeholder='Floor')
-      .form-group
-        label.col-sm-3.control-label(for='flat') Block
-        .col-sm-9
-          input#block.form-control(name='block' type='number', placeholder='Block')
-      .form-group
-        label.col-sm-3.control-label(for='isAdmin') Admin user
-        .col-sm-9
-          input#isAdmin(name='isAdmin' type='checkbox', value='true')
-      .form-group
-        .col-sm-offset-3.col-sm-9
-          button.btn.btn-success(type='submit') Add user
+  if !user.profile.isAdmin
+    h1 Sorry you are not authorised to view this page!
+  else
+    .page-header
+      h3 Add new user
+    .form.col-sm-12
+      form.form-horizontal(action='./addUser',method='post')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group
+          label.col-sm-3.control-label(for='salutation') Salutation
+          .col-sm-3
+            select.form-control(name='salutation')
+              option Mr
+              option Mrs
+              option Ms
+        .form-group
+          label.col-sm-3.control-label(for='firstName') First Name
+          .col-sm-9
+            input#firstName.form-control(name='firstName' type='text', placeholder='First Name')
+        .form-group
+          label.col-sm-3.control-label(for='familyName') Family Name
+          .col-sm-9
+            input#familyName.form-control(name='familyName' type='text', placeholder='Family Name')
+        .form-group
+          label.col-sm-3.control-label(for='email') Email
+          .col-sm-9
+            input#email.form-control(name='email' type='email', placeholder='Email Address')
+        .form-group
+          label.col-sm-3.control-label(for='password') Password
+          .col-sm-9
+            input#password.form-control(name='password' type='password', placeholder='Password')
+        .form-group
+          label.col-sm-3.control-label(for='confirmPassword') Confirm Password
+          .col-sm-9
+            input#confirmPassword.form-control(name='confirmPassword' type='password', placeholder='Confirm Password')
+        .form-group
+          label.col-sm-3.control-label(for='phone') Phone number
+          .col-sm-9
+            input#phone.form-control(name='phone' type='number', placeholder='Phone Number')
+        .form-group
+          label.col-sm-3.control-label(for='estate') Estate
+          .col-sm-9
+            input#estate.form-control(name='estate' type='text', placeholder='Estate')
+        .form-group
+          label.col-sm-3.control-label(for='flat') Flat
+          .col-sm-9
+            input#flat.form-control(name='flat' type='text', placeholder='Flat')
+        .form-group
+          label.col-sm-3.control-label(for='flat') Floor
+          .col-sm-9
+            input#floor.form-control(name='floor' type='number', placeholder='Floor')
+        .form-group
+          label.col-sm-3.control-label(for='flat') Block
+          .col-sm-9
+            input#block.form-control(name='block' type='number', placeholder='Block')
+        .form-group
+          label.col-sm-3.control-label(for='isAdmin') Admin user
+          .col-sm-9
+            input#isAdmin(name='isAdmin' type='checkbox', value='true')
+        .form-group
+          .col-sm-offset-3.col-sm-9
+            button.btn.btn-success(type='submit') Add user
