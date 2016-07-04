@@ -124,14 +124,13 @@ exports.postSignup = (req, res, next) => {
     }
     user.save((err) => {
       if (err) { return next(err); }
-      req.logIn(user, (err) => {
-        if (err) {
-          return next(err);
-        }
-        res.redirect('/');
-      });
+      // req.logIn(user, (err) => {
+      //   if (err) {
+      //     return next(err);
+      //   }
+        req.flash('success', { msg: 'Success! You created a new user!' });
+        res.redirect('/admin')});
     });
-  });
 };
 
 /**
