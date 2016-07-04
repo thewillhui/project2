@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Transport = require('../models/Transport.js');
 
-mongoose.connect("mongodb://localhost:27017/test");
+mongoose.connect("mongodb://heroku_8tbp19jx:c1tpquv0khhk6skbqf7u3b9c71@ds023064.mlab.com:23064/heroku_8tbp19jx");
 mongoose.connection.on('error', () => {
   console.error('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
